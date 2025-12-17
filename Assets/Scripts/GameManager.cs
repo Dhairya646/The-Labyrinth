@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (isWin)
+        if (isWin || isGameOver)
             return;
         if (enemyCount <= 0)
             Win();
@@ -95,6 +95,11 @@ public class GameManager : MonoBehaviour
         gameOverUI.SetActive(true);
         PlayerMovement.enabled = false;
         Time.timeScale = 0f;
+
+        foreach (Animator anim in FindObjectsOfType<Animator>())
+        {
+             anim.enabled = false;
+        }
     }
 
     public void Win()
@@ -103,6 +108,11 @@ public class GameManager : MonoBehaviour
         winUI.SetActive(true);
         PlayerMovement.enabled = false;
         Time.timeScale = 0f;
+
+        foreach (Animator anim in FindObjectsOfType<Animator>())
+        {
+             anim.enabled = false;
+        }
     }
     
     public void RestartGame()
